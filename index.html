@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -10,7 +10,7 @@
       box-sizing: border-box;
       margin: 0;
       padding: 0;
-      font-family: 'Segoe UI', Times romans, Geneva, Verdana, sanselif;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     }
 
     body {
@@ -121,13 +121,12 @@
 
     /* Specific Page Themes */
     #home {
-      background-color: transparent; /* Inherits body dark blue */
+      background-color: transparent;
     }
 
     #graphic-design, #motion-graphics, #video-edits, #script-written {
-  background-color: #1d3557; /* Blue background for Design pages */
-  border: 1px solid #457b9d;
-}
+      background-color: #1d3557; /* Blue background for Design pages */
+      border: 1px solid #457b9d;
     }
 
     .section-title {
@@ -158,43 +157,75 @@
       margin-top: auto;
       font-size: 0.9rem;
     }
-  /* Mobile Responsive Styles */
-  @media (max-width: 768px) {
-    nav {
-      flex-direction: column;
-      padding: 10px;
+
+    /* Hide menu toggle on desktop screens */
+    .menu-toggle {
+      display: none;
+      font-size: 1.8rem;
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: #0b132b;
     }
 
-    .nav-links {
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 5px;
-    }
+    /* Mobile Responsive Styles */
+    @media (max-width: 768px) {
+      nav {
+        justify-content: space-between;
+        padding: 10px 20px;
+      }
 
-    .nav-links a {
-      padding: 8px 10px;
-      font-size: 0.85rem;
-    }
+      .menu-toggle {
+        display: block;
+      }
 
-    .dropdown-menu {
-      position: static;
-      box-shadow: none;
-      background-color: #f8f9fa;
-    }
+      .nav-links {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 220px;
+        background-color: #ffffff;
+        box-shadow: 2px 5px 10px rgba(0, 0, 0, 0.2);
+        padding: 10px 0;
+        align-items: flex-start;
+      }
 
-    .cards-grid {
-      grid-template-columns: 1fr;
-      gap: 15px;
-    }
+      .nav-links.active-menu {
+        display: flex;
+      }
 
-    main {
-      padding: 20px 10px;
-    }
+      .nav-links li {
+        width: 100%;
+      }
 
-    .section-title {
-      font-size: 1.5rem;
+      .nav-links a {
+        padding: 12px 20px;
+        width: 100%;
+        color: #1c2541;
+      }
+
+      .dropdown-menu {
+        position: static;
+        box-shadow: none;
+        background-color: #f1f5f9;
+        padding-left: 15px;
+      }
+
+      .cards-grid {
+        grid-template-columns: 1fr;
+        gap: 15px;
+      }
+
+      main {
+        padding: 20px 10px;
+      }
+
+      .section-title {
+        font-size: 1.5rem;
+      }
     }
-  }
   </style>
 </head>
 <body>
@@ -203,7 +234,9 @@
   <header>
     <nav>
       <a href="#" class="logo">Nickson</a>
-      <ul class="nav-links">
+      <button class="menu-toggle" onclick="toggleMenu()">&#9776;</button>
+      
+      <ul class="nav-links" id="navLinks">
         <li><a href="#" onclick="showPage('home')">Home</a></li>
         <li><a href="#" onclick="showPage('politics')">Politics</a></li>
         <li><a href="#" onclick="showPage('agriculture')">Agriculture</a></li>
@@ -215,15 +248,15 @@
         <li><a href="#" onclick="showPage('health')">Health</a></li>
         
         <!-- Dropdown Menu for My Design -->
-<li class="dropdown">
-  <a href="#" onclick="showPage('graphic-design')">My Design &#9662;</a>
-  <ul class="dropdown-menu">
-    <li><a href="#" onclick="showPage('graphic-design')">Graphic Design</a></li>
-    <li><a href="#" onclick="showPage('motion-graphics')">Motion Graphics</a></li>
-    <li><a href="#" onclick="showPage('video-edits')">Video Edits</a></li>
-    <li><a href="#" onclick="showPage('script-written')">Script Written</a></li>
-  </ul>
-</li>
+        <li class="dropdown">
+          <a href="#" onclick="showPage('graphic-design')">My Design &#9662;</a>
+          <ul class="dropdown-menu">
+            <li><a href="#" onclick="showPage('graphic-design')">Graphic Design</a></li>
+            <li><a href="#" onclick="showPage('motion-graphics')">Motion Graphics</a></li>
+            <li><a href="#" onclick="showPage('video-edits')">Video Edits</a></li>
+            <li><a href="#" onclick="showPage('script-written')">Script Written</a></li>
+          </ul>
+        </li>
       </ul>
     </nav>
   </header>
@@ -246,49 +279,51 @@
         </div>
       </div>
     </section>
-<section id="graphic-design" class="content-section">
-  <h1 class="section-title">Graphic Design</h1>
-  <p>Branding, posters, and digital graphics.</p>
-  <div class="cards-grid">
-  <div class="card">
-     <img src="Grap2.png" alt="Graphic Design Work" style="width: 100%; height: auto; border-radius: 8px; margin-top: 10px;">
-     <img src="madrid derby.jpg" alt="Graphic Design Work" style="width: 100%; height: auto; border-radius: 8px; margin-top: 10px;">
-   </div>
-  </div>
-</section>
 
-<!-- Motion Graphics Page -->
-<section id="motion-graphics" class="content-section">
-  <h1 class="section-title">Motion Graphics</h1>
-  <p>2D/3D animations and visual effects.</p>
-  <div class="cards-grid">
-    <div class="card">
-      <p>Add your motion graphics content or video embeds here.</p>
-    </div>
-  </div>
-</section>
+    <!-- Graphic Design Section -->
+    <section id="graphic-design" class="content-section">
+      <h1 class="section-title">Graphic Design</h1>
+      <p>Branding, posters, and digital graphics.</p>
+      <div class="cards-grid">
+        <div class="card">
+          <img src="Grap2.png" alt="Graphic Design Work" style="width: 100%; height: auto; border-radius: 8px; margin-top: 10px;">
+          <img src="madrid derby.jpg" alt="Graphic Design Work" style="width: 100%; height: auto; border-radius: 8px; margin-top: 10px;">
+        </div>
+      </div>
+    </section>
 
-<!-- Video Edits Page -->
-<section id="video-edits" class="content-section">
-  <h1 class="section-title">Video Edits</h1>
-  <p>Professional video production and color grading.</p>
-  <div class="cards-grid">
-    <div class="card">
-      <p>Add your video projects or YouTube links here.</p>
-    </div>
-  </div>
-</section>
+    <!-- Motion Graphics Page -->
+    <section id="motion-graphics" class="content-section">
+      <h1 class="section-title">Motion Graphics</h1>
+      <p>2D/3D animations and visual effects.</p>
+      <div class="cards-grid">
+        <div class="card">
+          <p>Add your motion graphics content or video embeds here.</p>
+        </div>
+      </div>
+    </section>
 
-<!-- Script Written Page -->
-<section id="script-written" class="content-section">
-  <h1 class="section-title">Script Written</h1>
-  <p>Engaging storytelling for commercials and films.</p>
-  <div class="cards-grid">
-    <div class="card">
-      <p>Add your written scripts or article text here.</p>
-    </div>
-  </div>
-</section>
+    <!-- Video Edits Page -->
+    <section id="video-edits" class="content-section">
+      <h1 class="section-title">Video Edits</h1>
+      <p>Professional video production and color grading.</p>
+      <div class="cards-grid">
+        <div class="card">
+          <p>Add your video projects or YouTube links here.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Script Written Page -->
+    <section id="script-written" class="content-section">
+      <h1 class="section-title">Script Written</h1>
+      <p>Engaging storytelling for commercials and films.</p>
+      <div class="cards-grid">
+        <div class="card">
+          <p>Add your written scripts or article text here.</p>
+        </div>
+      </div>
+    </section>
 
     <!-- Generic Section Template for standard pages -->
     <section id="generic" class="content-section">
@@ -300,29 +335,41 @@
   <!-- Footer (Black) -->
   <footer>
     <p>This website is designed by a student journalist from research activities, Articles and in the creative field. A learner and an educator, mentor and counsellor.</p>
-<p>NICKSON NGIGI</p>
-<Editor,Student,Journalist.</p>
-
+    <p><strong>NICKSON NGIGI</strong></p>
+    <p>Editor, Student, Journalist.</p>
     <p>&copy; 2026 Nickson. All rights reserved.</p>
   </footer>
 
   <script>
-  function showPage(pageId) {
-    // Hide all sections
-    const sections = document.querySelectorAll('.content-section');
-    sections.forEach(section => section.classList.remove('active'));
-
-    // Check if the target section exists
-    const targetSection = document.getElementById(pageId);
-    if (targetSection) {
-      targetSection.classList.add('active');
-    } else {
-      // Fallback for standard generic categories (Politics, Sports, etc.)
-      const genericSection = document.getElementById('generic');
-      document.getElementById('generic-title').innerText = pageId.charAt(0).toUpperCase() + pageId.slice(1);
-      genericSection.classList.add('active');
+    function toggleMenu() {
+      const navLinks = document.getElementById('navLinks');
+      if (navLinks) {
+        navLinks.classList.toggle('active-menu');
+      }
     }
-  }
-</script>
+
+    function showPage(pageId) {
+      // Hide all sections
+      const sections = document.querySelectorAll('.content-section');
+      sections.forEach(section => section.classList.remove('active'));
+
+      // Close mobile menu when a page link is selected
+      const navLinks = document.getElementById('navLinks');
+      if (navLinks) {
+        navLinks.classList.remove('active-menu');
+      }
+
+      // Check if the target section exists
+      const targetSection = document.getElementById(pageId);
+      if (targetSection) {
+        targetSection.classList.add('active');
+      } else {
+        // Fallback for standard generic categories (Politics, Sports, etc.)
+        const genericSection = document.getElementById('generic');
+        document.getElementById('generic-title').innerText = pageId.charAt(0).toUpperCase() + pageId.slice(1);
+        genericSection.classList.add('active');
+      }
+    }
+  </script>
 </body>
 </html>
