@@ -3,14 +3,14 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Nickson</title>
+  <title>NICKSON</title>
   <style>
     /* Reset & Base Styles */
     * {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      font-family: 'Segoe UI', Times romans, Geneva, Verdana, sanselif;
     }
 
     body {
@@ -158,6 +158,43 @@
       margin-top: auto;
       font-size: 0.9rem;
     }
+  /* Mobile Responsive Styles */
+  @media (max-width: 768px) {
+    nav {
+      flex-direction: column;
+      padding: 10px;
+    }
+
+    .nav-links {
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 5px;
+    }
+
+    .nav-links a {
+      padding: 8px 10px;
+      font-size: 0.85rem;
+    }
+
+    .dropdown-menu {
+      position: static;
+      box-shadow: none;
+      background-color: #f8f9fa;
+    }
+
+    .cards-grid {
+      grid-template-columns: 1fr;
+      gap: 15px;
+    }
+
+    main {
+      padding: 20px 10px;
+    }
+
+    .section-title {
+      font-size: 1.5rem;
+    }
+  }
   </style>
 </head>
 <body>
@@ -214,8 +251,8 @@
   <p>Branding, posters, and digital graphics.</p>
   <div class="cards-grid">
   <div class="card">
-     <img src="Grap2.png" alt="Graphic Design Work" style="width: 100%; border-radius: 8px; margin-top: 10px;">
-     <img src="madrid derby.jpg" alt="Graphic Design Work" style="width: 100%; border-radius: 8px; margin-top: 10px;">
+     <img src="Grap2.png" alt="Graphic Design Work" style="width: 100%; height: auto; border-radius: 8px; margin-top: 10px;">
+     <img src="madrid derby.jpg" alt="Graphic Design Work" style="width: 100%; height: auto; border-radius: 8px; margin-top: 10px;">
    </div>
   </div>
 </section>
