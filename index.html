@@ -149,20 +149,60 @@
       backdrop-filter: blur(5px);
     }
 
-    /* Graphic Design Portfolio Images Scaling */
+    /* Graphic Design Portfolio Images & Click to Enlarge */
     .design-img {
       width: 100%;
       max-height: 220px;
       object-fit: cover;
       border-radius: 6px;
-      transition: transform 0.3s ease;
+      cursor: pointer;
+      transition: transform 0.3s ease, opacity 0.3s ease;
     }
 
     .design-img:hover {
-      transform: scale(1.02);
+      transform: scale(1.03);
+      opacity: 0.9;
     }
 
-    /* News Article & Card Styling (The Sun Style) */
+    /* Image Lightbox Modal Overlay */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 2000;
+      padding-top: 50px;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      background-color: rgba(0, 0, 0, 0.9);
+    }
+
+    .modal-content {
+      margin: auto;
+      display: block;
+      max-width: 90%;
+      max-height: 85vh;
+      border-radius: 8px;
+      box-shadow: 0 0 20px rgba(255,255,255,0.2);
+    }
+
+    .close-modal {
+      position: absolute;
+      top: 20px;
+      right: 35px;
+      color: #ffffff;
+      font-size: 40px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: color 0.3s ease;
+    }
+
+    .close-modal:hover {
+      color: #e50914;
+    }
+
+    /* News Article & Card Styling */
     .news-card {
       background: #1c2541;
       border-radius: 8px;
@@ -181,7 +221,7 @@
     }
 
     .article-tag {
-      background-color: #e50914; /* Red badge */
+      background-color: #e50914;
       color: #ffffff;
       font-size: 0.75rem;
       font-weight: bold;
@@ -421,19 +461,19 @@
     <!-- Graphic Design Section -->
     <section id="graphic-design" class="content-section">
       <h1 class="section-title">Graphic Design</h1>
-      <p>Branding, posters, and digital graphics.</p>
+      <p>Click on any design to enlarge it.</p>
       <div class="cards-grid">
         <div class="card">
-          <img src="Grap2.png" alt="Graphic Design Work" class="design-img">
+          <img src="Grap2.png" alt="Graphic Design Work" class="design-img" onclick="openImageModal(this.src)">
         </div>
         <div class="card">
-          <img src="madrid derby.jpg" alt="Madrid Derby Graphic" class="design-img">
+          <img src="madrid derby.jpg" alt="Madrid Derby Graphic" class="design-img" onclick="openImageModal(this.src)">
         </div>
         <div class="card">
-          <img src="wednesday.png" alt="Wednesday Graphic" class="design-img">
+          <img src="wednesday.png" alt="Wednesday Graphic" class="design-img" onclick="openImageModal(this.src)">
         </div>
         <div class="card">
-          <img src="PECKY.png" alt="Pecky Graphic" class="design-img">
+          <img src="PECKY.png" alt="Pecky Graphic" class="design-img" onclick="openImageModal(this.src)">
         </div>
       </div>
     </section>
@@ -480,6 +520,12 @@
       <p>Content for this topic will be displayed here.</p>
     </section>
   </main>
+
+  <!-- Image Lightbox Modal Overlay -->
+  <div id="imageModal" class="modal" onclick="closeImageModal()">
+    <span class="close-modal">&times;</span>
+    <img class="modal-content" id="expandedImg">
+  </div>
 
   <!-- Footer (Black) -->
   <footer>
@@ -531,6 +577,18 @@
         article.style.display = "none";
         btn.innerText = "Read Full Article";
       }
+    }
+
+    // Image Modal Lightbox Functions
+    function openImageModal(imgSrc) {
+      const modal = document.getElementById("imageModal");
+      const expandedImg = document.getElementById("expandedImg");
+      modal.style.display = "block";
+      expandedImg.src = imgSrc;
+    }
+
+    function closeImageModal() {
+      document.getElementById("imageModal").style.display = "none";
     }
   </script>
 </body>
