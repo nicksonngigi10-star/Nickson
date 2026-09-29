@@ -38,14 +38,24 @@
       align-items: center;
       padding: 0 20px;
     }
+      .logo {
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: #0b132b;
+  padding: 15px 0;
+  text-decoration: none;
+  display: flex;          /* Places logo image & text side-by-side */
+  align-items: center;    /* Vertically aligns image with text */
+  gap: 10px;              /* Space between image and text */
+}
 
-    .logo {
-      font-size: 1.8rem;
-      font-weight: bold;
-      color: #0b132b;
-      padding: 15px 0;
-      text-decoration: none;
-    }
+.logo-img {
+  height: 35px;           /* Controls image height */
+  width: auto;            /* Maintains aspect ratio */
+  object-fit: contain;
+  border-radius: 4px;     /* Optional rounded corners */
+}
+   
 
     .nav-links {
       display: flex;
@@ -365,7 +375,10 @@
   <!-- Top Header (White) -->
   <header>
     <nav>
-      <a href="#" class="logo">Nickson</a>
+      <a href="#" class="logo">
+  <img src="logo.png" alt="Logo" class="logo-img">
+  <span>Nickson</span>
+</a>
       <button class="menu-toggle" onclick="toggleMenu()">&#9776;</button>
       
       <ul class="nav-links" id="navLinks">
