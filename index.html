@@ -124,8 +124,8 @@
       background-color: transparent;
     }
 
-    #graphic-design, #motion-graphics, #video-edits, #script-written {
-      background-color: #1d3557; /* Blue background for Design pages */
+    #graphic-design, #motion-graphics, #video-edits, #script-written, #agriculture {
+      background-color: #1d3557; /* Blue background for Content pages */
       border: 1px solid #457b9d;
     }
 
@@ -134,18 +134,107 @@
       margin-bottom: 15px;
     }
 
+    /* Responsive Grid for Cards & Images */
     .cards-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
       gap: 20px;
       margin-top: 20px;
     }
 
     .card {
       background: rgba(255, 255, 255, 0.1);
-      padding: 20px;
+      padding: 15px;
       border-radius: 8px;
       backdrop-filter: blur(5px);
+    }
+
+    /* Graphic Design Portfolio Images Scaling */
+    .design-img {
+      width: 100%;
+      max-height: 220px;
+      object-fit: cover;
+      border-radius: 6px;
+      transition: transform 0.3s ease;
+    }
+
+    .design-img:hover {
+      transform: scale(1.02);
+    }
+
+    /* News Article & Card Styling (The Sun Style) */
+    .news-card {
+      background: #1c2541;
+      border-radius: 8px;
+      padding: 20px;
+      max-width: 800px;
+      margin: 0 auto;
+      border: 1px solid #457b9d;
+    }
+
+    .card-img {
+      width: 100%;
+      max-height: 350px;
+      object-fit: cover;
+      border-radius: 6px;
+      margin-bottom: 15px;
+    }
+
+    .article-tag {
+      background-color: #e50914; /* Red badge */
+      color: #ffffff;
+      font-size: 0.75rem;
+      font-weight: bold;
+      padding: 4px 8px;
+      text-transform: uppercase;
+      display: inline-block;
+      margin-bottom: 10px;
+      border-radius: 3px;
+    }
+
+    .bold-title {
+      font-size: 1.8rem;
+      font-weight: 800;
+      margin-bottom: 10px;
+      color: #ffffff;
+      line-height: 1.2;
+    }
+
+    .summary-statement {
+      font-size: 1.05rem;
+      color: #d1d5db;
+      margin-bottom: 15px;
+      line-height: 1.5;
+    }
+
+    .read-btn {
+      background-color: #e50914;
+      color: #ffffff;
+      border: none;
+      padding: 10px 18px;
+      font-weight: bold;
+      border-radius: 4px;
+      cursor: pointer;
+      display: inline-block;
+      text-transform: uppercase;
+      font-size: 0.85rem;
+      transition: background-color 0.2s ease;
+    }
+
+    .read-btn:hover {
+      background-color: #b20710;
+    }
+
+    .full-article {
+      margin-top: 20px;
+      padding-top: 20px;
+      border-top: 1px solid #457b9d;
+      line-height: 1.6;
+      color: #f1f5f9;
+    }
+
+    .full-article p {
+      margin-bottom: 15px;
     }
 
     /* Footer (Black Background) */
@@ -158,7 +247,6 @@
       font-size: 0.9rem;
     }
 
-    /* Hide menu toggle on desktop screens */
     .menu-toggle {
       display: none;
       font-size: 1.8rem;
@@ -224,42 +312,10 @@
 
       .section-title {
         font-size: 1.5rem;
-       .news-article {
-  max-width: 800px;
-  margin: 0 auto;
-  font-family: Arial, sans-serif;
-  line-height: 1.6;
-}
+      }
 
-.article-tag {
-  background-color: #e50914;
-  color: #fff;
-  font-size: 0.8rem;
-  font-weight: bold;
-  padding: 4px 8px;
-  text-transform: uppercase;
-  display: inline-block;
-  margin-bottom: 10px;
-}
-
-.article-headline {
-  font-size: 2.2rem;
-  font-weight: 800;
-  margin-bottom: 10px;
-}
-
-.article-meta {
-  color: #888;
-  font-size: 0.9rem;
-  margin-bottom: 20px;
-  border-bottom: 1px solid #333;
-  padding-bottom: 10px;
-}
-
-.lead-paragraph {
-  font-size: 1.2rem;
-  font-weight: bold;
-}
+      .bold-title {
+        font-size: 1.4rem;
       }
     }
   </style>
@@ -315,67 +371,69 @@
         </div>
       </div>
     </section>
-<!-- Agriculture Section -->
-<section id="agriculture" class="content-section">
-  <article class="news-article">
-    <!-- Category Tag & Article Title -->
-    <span class="article-tag">AGRICULTURE & ENVIRONMENT</span>
-    <h1 class="article-headline">The Future of Tea Farming: Key Insights and Updates</h1>
-    
-    <!-- Author & Date Metadata -->
-    <div class="article-meta">
-      <span class="author">By <strong>Nickson Ngigi</strong></span> | 
-      <time datetime="2026-09-29">September 29, 2026</time>
-    </div>
-<div class="news-card">
-  <!-- Card Header with Image and Statement -->
-  <div class="card-header">
-    <img src="TEA.jpg" alt="Tea Farming" class="card-img">
-    <span class="article-tag">AGRICULTURE & ENVIRONMENT</span>
-    <h2 class="bold-title">THE VALUE OF KENYA TEA</h2>
-    <p class="summary-statement">
-      Tea is an evergreen shrub that drives Kenya's agricultural economy, with over 585,000 metric tonnes produced annually. 
-    </p>
-    <button class="read-btn" onclick="toggleArticle('tea-article-1')">Read Full Article</button>
-  </div>
 
-  <!-- Full Article Text (Hidden by Default) -->
-  <div id="tea-article-1" class="full-article" style="display: none;">
-    <p>
-      According to legend in China, tea was used as early as 2700 BCE as herbal medicine before becoming a daily drink...
-    </p>
-    <p>
-       THE VALUABLE OF KENYA TEA
-Tea is an evergreen shrubs or small trees that are cultivated and processed to make dried leaves for drinking and also used in some cases for herbal purposes.
-According to legend in china they state that tea was used as early as 2700BCE as a herbal medicine but later in around 3rd century it become a dairy for drinking where processing and cultivation began.
-In 350BC the first record of planting, processing and drinking was recoded. Tea growing processing and drinking continued to spreed all over the world and around late 19th-early 20th century it arrived in kenya .
-Where researchers Joizy Pius Engunjobi and Stephen Asatsa in a research stated that 95.3% of kenya use tea dairy and about 76.4% use 2-3 cups a day.
-According to Kenya tea industry performance report 2024 they stated that kenya produced an approximate of 585,533 metric tones of processed tea which made Kenya the third highest producer of tea below China and India. Kenya produce tea in two main blocks as stated by tea board of Kenya. The east of rift block and the west of rift block, the east block including Mt Kenya(Kiambu, Muranga, Nyeri, Kirinyaga, Meru and Tharaka Nithi.) Nyambeni Hills and the Aberdares ranges producing 32%. While 68% coming from the west of rift block including Nandi, Trans Nzoia, E.Markwet, Kakamega, Vihiga, Kericho, Bomet, Kisii,Nyamira and Nakuru.
-Tea as indicated in those counties does not grow everywhere it has favourable climate to grow it according to Tea board of kenya that they should be planted in high potential kenya highlands which is 1500-2700m above sea level with an annual rainfall of 1200-1500mm.
-In kenya the most common form of plantation is through nurseries which stays for 9-12months before transplanting and after transplanting it takes at least two years to where picking can be done. After that the tea(Camellia sinensis) can lust for a period of 50-80years.
-The tea leave undergo processing by first weathering where the leafs are spread to reduce moisture, then they are oxidised before dried.
-Then tea is graded in two category, primary and secondary where primary are broken pekoe1 big particles, pekoe farnning1, pekoe dust and dust 1,while the secondary grade are fanning1 and broken mixed fanning.
-The government of kenya also involves it in tea sector by financing,regulating and reinforcing tea sector.
-But this tea which is one of wealthy of kenya might be affected or end up less productive if there are no regulation and masseuse taken when it comes to climate change as stated by eco-business they said “study has predicted that optimal conditions for growing tea in Kenya will be reduced by a quarter (26.2 per cent) by 2050.
-Kenya’s most optimal tea-growing areas such as Mt Elgon and Mbeere are totally absent from the climate projections for 2050, according to the study. It also predicts that tea production in Kenya’s average tea-growing areas will fall by 39 per cent by 2050.Kenya’s temperature will rise by 2.5 degrees Celsius between 2000 and 2050, according to the report. The country will be extreme rainfall events. The Rift Valley region will especially be affected.(by Eco-business)”
-This is a big threat to kenyan tea and climate change should be a factor to consider not only in tea sector but even in other farming activities.  
+    <!-- Agriculture Section -->
+    <section id="agriculture" class="content-section">
+      <div class="news-card">
+        <!-- Card Header with Image, Title, & Description -->
+        <div class="card-header">
+          <img src="TEA.jpg" alt="Tea Farming" class="card-img">
+          <span class="article-tag">AGRICULTURE & ENVIRONMENT</span>
+          <h2 class="bold-title">THE VALUE OF KENYA TEA</h2>
+          <p class="summary-statement">
+            Tea is an evergreen shrub that drives Kenya's agricultural economy, with over 585,000 metric tonnes produced annually. Click below to read the complete research article.
+          </p>
+          <button class="read-btn" onclick="toggleArticle('tea-article-1')">Read Full Article</button>
+        </div>
 
-    </p>
-  </div>
-</div>
-  
-  </article>
-  </section>
+        <!-- Full Article Text (Hidden by Default) -->
+        <div id="tea-article-1" class="full-article" style="display: none;">
+          <p>
+            <strong>Tea</strong> is an evergreen shrub or small tree cultivated and processed to make dried leaves for drinking, as well as for medicinal and herbal purposes.
+          </p>
+          <p>
+            According to Chinese legend, tea was used as early as 2700 BCE as herbal medicine. By the 3rd century, it became a daily beverage where processing and cultivation flourished. By 350 BCE, the first records of planting, processing, and drinking were documented. Tea cultivation continued to spread worldwide, arriving in Kenya in the late 19th and early 20th centuries.
+          </p>
+          <p>
+            Researchers Joizy Pius Engunjobi and Stephen Asatsa highlighted that <strong>95.3% of Kenyans consume tea daily</strong>, with 76.4% drinking 2 to 3 cups per day.
+          </p>
+          <p>
+            The Kenya Tea Industry Performance Report (2024) indicated that Kenya produced approximately <strong>585,533 metric tonnes</strong> of processed tea, making it the third-highest producer globally after China and India. 
+          </p>
+          <p>
+            The Tea Board of Kenya categorizes production into two main regional blocks:
+          </p>
+          <ul>
+            <li><strong>East of Rift Block (32%):</strong> Mt. Kenya region (Kiambu, Murang'a, Nyeri, Kirinyaga, Meru, Tharaka Nithi), Nyambeni Hills, and the Aberdare Ranges.</li>
+            <li><strong>West of Rift Block (68%):</strong> Nandi, Trans Nzoia, Elgeyo Marakwet, Kakamega, Vihiga, Kericho, Bomet, Kisii, Nyamira, and Nakuru.</li>
+          </ul>
+          <br>
+          <p>
+            Optimal growing conditions require Kenya's high potential highlands (1,500m–2,700m above sea level) with annual rainfall between 1,200mm–1,500mm. Tea plants (<em>Camellia sinensis</em>) remain in nurseries for 9–12 months before transplanting, taking two years until the first harvest, and can remain productive for 50 to 80 years.
+          </p>
+          <p>
+            <strong>Climate Change Threat:</strong> Studies by Eco-Business project that optimal conditions for tea in Kenya could decline by 26.2% by 2050 due to rising temperatures and extreme weather events, presenting a major challenge for the agricultural sector.
+          </p>
+        </div>
+      </div>
+    </section>
+
     <!-- Graphic Design Section -->
     <section id="graphic-design" class="content-section">
       <h1 class="section-title">Graphic Design</h1>
       <p>Branding, posters, and digital graphics.</p>
       <div class="cards-grid">
         <div class="card">
-          <img src="Grap2.png" alt="Graphic Design Work" style="width: 100%; height: auto; border-radius: 8px; margin-top: 10px;">
-          <img src="madrid derby.jpg" alt="Graphic Design Work" style="width: 100%; height: auto; border-radius: 8px; margin-top: 10px;">
-          <img src="wednesday.png" alt="Graphic Design Work" style="width: 100%; height: auto; border-radius: 8px; margin-top: 10px;">
-          <img src="PECKY.png" alt="Graphic Design Work" style="width: 100%; height: auto; border-radius: 8px; margin-top: 10px;">
+          <img src="Grap2.png" alt="Graphic Design Work" class="design-img">
+        </div>
+        <div class="card">
+          <img src="madrid derby.jpg" alt="Madrid Derby Graphic" class="design-img">
+        </div>
+        <div class="card">
+          <img src="wednesday.png" alt="Wednesday Graphic" class="design-img">
+        </div>
+        <div class="card">
+          <img src="PECKY.png" alt="Pecky Graphic" class="design-img">
         </div>
       </div>
     </section>
@@ -387,9 +445,9 @@ This is a big threat to kenyan tea and climate change should be a factor to cons
       <div class="cards-grid">
         <div class="card">
           <video width="100%" controls style="border-radius: 8px; max-height: 400px; margin-top: 10px;">
-  <source src="0001-0900.mp4" type="video/mp4">
-  Your browser does not support the video tag.
-</video>
+            <source src="0001-0900.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+          </video>
         </div>
       </div>
     </section>
@@ -425,7 +483,7 @@ This is a big threat to kenyan tea and climate change should be a factor to cons
 
   <!-- Footer (Black) -->
   <footer>
-    <p>This website is designed by a student journalist from research activities, Articles and in the creative field. A learner and an educator, mentor and counsellor.</p>
+    <p>This website is designed by a student journalist from research activities, articles, and creative work. A learner, educator, mentor, and counsellor.</p>
     <p><strong>NICKSON NGIGI</strong></p>
     <p>Editor, Student, Journalist.</p>
     <p>&copy; 2026 Nickson. All rights reserved.</p>
@@ -459,6 +517,19 @@ This is a big threat to kenyan tea and climate change should be a factor to cons
         const genericSection = document.getElementById('generic');
         document.getElementById('generic-title').innerText = pageId.charAt(0).toUpperCase() + pageId.slice(1);
         genericSection.classList.add('active');
+      }
+    }
+
+    // Toggle Read More / Full Article Content
+    function toggleArticle(articleId) {
+      const article = document.getElementById(articleId);
+      const btn = event.currentTarget;
+      if (article.style.display === "none" || article.style.display === "") {
+        article.style.display = "block";
+        btn.innerText = "Hide Article";
+      } else {
+        article.style.display = "none";
+        btn.innerText = "Read Full Article";
       }
     }
   </script>
