@@ -1,21 +1,782 @@
- <!-- Motion Graphics Page -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NICKgigi</title>
+  <style>
+    /* Reset & Base Styles */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body {
+      background-color: #0b132b; /* Dark Blue background */
+      color: #ffffff;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Top Navigation (Red Background) */
+    header {
+      background-color: #e50914; /* Red Header */
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    nav {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 20px;
+    }
+
+    .logo {
+      font-size: 1.8rem;
+      font-weight: bold;
+      color: #ffffff;
+      padding: 15px 0;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .logo-img {
+      height: 35px;
+      width: auto;
+      object-fit: contain;
+      border-radius: 4px;
+      background-color: #ffffff;
+      padding: 2px;
+    }
+
+    .nav-links {
+      display: flex;
+      list-style: none;
+      align-items: center;
+    }
+
+    .nav-links li {
+      position: relative;
+    }
+
+    .nav-links a {
+      display: block;
+      padding: 20px 12px;
+      color: #ffffff;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.95rem;
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+    .nav-links a:hover {
+      background-color: #b20710;
+      color: #ffffff;
+    }
+
+    /* Dropdown Menu Styles */
+    .dropdown-menu {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      background-color: #ffffff;
+      min-width: 180px;
+      box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+      border-radius: 0 0 5px 5px;
+      list-style: none;
+      overflow: hidden;
+    }
+
+    .dropdown-menu li a {
+      padding: 12px 16px;
+      color: #1c2541;
+      font-weight: normal;
+    }
+
+    .dropdown-menu li a:hover {
+      background-color: #f1f5f9;
+      color: #e50914;
+    }
+
+    .dropdown:hover .dropdown-menu {
+      display: block;
+    }
+
+    /* Full Width Hero Cover on Home Page */
+    .full-width-hero {
+      width: 100vw;
+      position: relative;
+      left: 50%;
+      right: 50%;
+      margin-left: -50vw;
+      margin-right: -50vw;
+      overflow: hidden;
+    }
+
+    .hero-img-full {
+      width: 100%;
+      height: auto;
+      max-height: 550px;
+      object-fit: cover;
+      display: block;
+    }
+
+    /* Main Content Area */
+    main {
+      flex: 1;
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 40px 20px;
+      width: 100%;
+    }
+
+    .content-section {
+      display: none;
+      padding: 20px 0;
+    }
+
+    .content-section.active {
+      display: block;
+    }
+
+    .hero-title {
+      font-size: 3.5rem;
+      font-weight: 900;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: #ffffff;
+      margin: 25px 0 15px 0;
+      text-align: center;
+    }
+
+    .section-title {
+      font-size: 2.2rem;
+      margin-bottom: 15px;
+      border-bottom: 2px solid #e50914;
+      padding-bottom: 8px;
+      display: inline-block;
+    }
+
+    /* Grid Layout for Homepage & Portfolio Items */
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 30px;
+      margin-top: 25px;
+    }
+
+    .card {
+      background: transparent;
+      padding: 0;
+      border-radius: 0;
+      border: none;
+    }
+
+    .card h3 {
+      font-size: 1.3rem;
+      margin-bottom: 8px;
+      color: #ffffff;
+    }
+
+    .card p {
+      color: #d1d5db;
+      line-height: 1.5;
+    }
+
+    .design-img {
+      width: 100%;
+      max-height: 250px;
+      object-fit: cover;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: transform 0.3s ease;
+    }
+
+    .design-img:hover {
+      transform: scale(1.02);
+    }
+
+    /* Lightbox Modal */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 2000;
+      padding-top: 50px;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.9);
+    }
+
+    .modal-content {
+      margin: auto;
+      display: block;
+      max-width: 90%;
+      max-height: 85vh;
+      border-radius: 8px;
+    }
+
+    .close-modal {
+      position: absolute;
+      top: 20px;
+      right: 35px;
+      color: #ffffff;
+      font-size: 40px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    /* News Article Styling */
+    .news-card {
+      background: transparent;
+      border-radius: 0;
+      padding: 0;
+      max-width: 100%;
+      margin: 0 auto;
+      border: none;
+    }
+
+    .card-img {
+      width: 100%;
+      max-height: 420px;
+      object-fit: cover;
+      border-radius: 8px;
+      margin-bottom: 20px;
+    }
+
+    .article-tag {
+      background-color: #e50914;
+      color: #ffffff;
+      font-size: 0.75rem;
+      font-weight: bold;
+      padding: 4px 10px;
+      text-transform: uppercase;
+      display: inline-block;
+      margin-bottom: 12px;
+      border-radius: 3px;
+    }
+
+    .bold-title {
+      font-size: 2.2rem;
+      font-weight: 800;
+      margin-bottom: 12px;
+      color: #ffffff;
+      line-height: 1.25;
+    }
+
+    .summary-statement {
+      font-size: 1.1rem;
+      color: #d1d5db;
+      margin-bottom: 20px;
+      line-height: 1.6;
+    }
+
+    .read-btn {
+      background-color: #e50914;
+      color: #ffffff;
+      border: none;
+      padding: 12px 22px;
+      font-weight: bold;
+      border-radius: 4px;
+      cursor: pointer;
+      display: inline-block;
+      text-transform: uppercase;
+      font-size: 0.85rem;
+      transition: background-color 0.2s ease;
+    }
+
+    .read-btn:hover {
+      background-color: #b20710;
+    }
+
+    .full-article {
+      margin-top: 25px;
+      padding-top: 25px;
+      border-top: 1px solid rgba(255, 255, 255, 0.2);
+      line-height: 1.7;
+      color: #f1f5f9;
+      font-size: 1.05rem;
+    }
+
+    .full-article p {
+      margin-bottom: 18px;
+    }
+
+    .full-article ul {
+      margin-left: 20px;
+      margin-bottom: 18px;
+    }
+
+    .full-article li {
+      margin-bottom: 8px;
+    }
+
+    /* Footer (Black) */
+    footer {
+      background-color: #000000;
+      color: #aaaaaa;
+      text-align: center;
+      padding: 25px;
+      margin-top: auto;
+      font-size: 0.9rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .footer-terms {
+      margin-top: 12px;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      color: #d1d5db;
+    }
+
+    .menu-toggle {
+      display: none;
+      font-size: 1.8rem;
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: #ffffff;
+    }
+
+    /* Mobile Responsive Styles */
+    @media (max-width: 768px) {
+      nav {
+        justify-content: space-between;
+        padding: 10px 20px;
+      }
+
+      .menu-toggle {
+        display: block;
+      }
+
+      .nav-links {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background-color: #e50914;
+        padding: 10px 0;
+        align-items: flex-start;
+      }
+
+      .nav-links.active-menu {
+        display: flex;
+      }
+
+      .nav-links li {
+        width: 100%;
+      }
+
+      .nav-links a {
+        padding: 12px 20px;
+        width: 100%;
+        color: #ffffff;
+      }
+
+      .dropdown-menu {
+        position: static;
+        box-shadow: none;
+        background-color: #b20710;
+        padding-left: 15px;
+      }
+
+      .dropdown-menu li a {
+        color: #ffffff;
+      }
+
+      .hero-title {
+        font-size: 2.2rem;
+      }
+
+      .bold-title {
+        font-size: 1.6rem;
+      }
+
+      .cards-grid {
+        grid-template-columns: 1fr;
+      }
+
+      main {
+        padding: 20px 15px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Header (Red) -->
+  <header>
+    <nav>
+      <a href="#" class="logo" onclick="showPage('home')">
+        <img src="logo.png" alt="Logo" class="logo-img">
+        <span>NICKgigi</span>
+      </a>
+      <button class="menu-toggle" onclick="toggleMenu()">&#9776;</button>
+      
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#" onclick="showPage('home')">Home</a></li>
+        <li><a href="#" onclick="showPage('politics')">Politics</a></li>
+        <li><a href="#" onclick="showPage('agriculture')">Agriculture</a></li>
+        <li><a href="#" onclick="showPage('economics')">Economics</a></li>
+        <li><a href="#" onclick="showPage('religious')">Religious</a></li>
+        <li><a href="#" onclick="showPage('opinion')">Opinion</a></li>
+        <li><a href="#" onclick="showPage('history')">History</a></li>
+        <li><a href="#" onclick="showPage('sports')">Sports</a></li>
+        <li><a href="#" onclick="showPage('health')">Health</a></li>
+        
+        <!-- Dropdown Menu for My Design -->
+        <li class="dropdown">
+          <a href="#">My Design &#9662;</a>
+          <ul class="dropdown-menu">
+            <li><a href="#" onclick="showPage('graphic-design')">Graphic Design</a></li>
+            <li><a href="#" onclick="showPage('motion-graphics')">Motion Graphics</a></li>
+            <li><a href="#" onclick="showPage('video-edits')">Video Edits</a></li>
+            <li><a href="#" onclick="showPage('script-written')">Script Written</a></li>
+          </ul>
+        </li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Main Content Body -->
+  <main>
+    <!-- Home Section -->
+    <section id="home" class="content-section active">
+      <div class="full-width-hero">
+        <img src="MY COVER.png" alt="Journalism Cover" class="hero-img-full">
+      </div>
+      <h1 class="hero-title">JOURNALISM</h1>
+
+      <div class="cards-grid">
+        <div class="card">
+          <h3>Latest Articles</h3>
+          <p>Explore original reporting across Politics, Agriculture, Health, and Economics.</p>
+        </div>
+        <div class="card">
+          <h3>Creative Portfolio</h3>
+          <p>View Graphic Design, Motion Graphics, and Video Production work under My Design.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Politics Section -->
+    <section id="politics" class="content-section">
+      <div class="news-card">
+        <div class="card-header">
+          <img src="POLITICS.jpg" alt="Politics Article Image" class="card-img">
+          <span class="article-tag">POLITICS</span>
+          <h2 class="bold-title">POLITICAL ANALYSIS & INSIGHTS</h2>
+          <p class="summary-statement">
+            Paste your summary here. This section covers news, governance, public policy, and national affairs.
+          </p>
+          <button class="read-btn" onclick="toggleArticle('politics-article-1')">Read Full Article</button>
+        </div>
+        <div id="politics-article-1" class="full-article" style="display: none;">
+          <p>Paste the full text of your politics article here...</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Agriculture Section -->
+    <section id="agriculture" class="content-section">
+      <div class="news-card">
+        <div class="card-header">
+          <img src="TEA.jpg" alt="Tea Farming" class="card-img">
+          <span class="article-tag">AGRICULTURE & ENVIRONMENT</span>
+          <h2 class="bold-title">THE VALUE OF KENYA TEA</h2>
+          <p class="summary-statement">
+            Tea is an evergreen shrub that drives Kenya's agricultural economy, with over 585,000 metric tonnes produced annually. Click below to read the complete research article.
+          </p>
+          <button class="read-btn" onclick="toggleArticle('tea-article-1')">Read Full Article</button>
+        </div>
+
+        <div id="tea-article-1" class="full-article" style="display: none;">
+          <p>
+            <strong>Tea</strong> is an evergreen shrub or small tree cultivated and processed to make dried leaves for drinking, as well as for medicinal and herbal purposes.
+          </p>
+          <p>
+            According to Chinese legend, tea was used as early as 2700 BCE as herbal medicine. By the 3rd century, it became a daily beverage where processing and cultivation flourished. By 350 BCE, the first records of planting, processing, and drinking were documented. Tea cultivation continued to spread worldwide, arriving in Kenya in the late 19th and early 20th centuries.
+          </p>
+          <p>
+            Researchers Joizy Pius Engunjobi and Stephen Asatsa highlighted that <strong>95.3% of Kenyans consume tea daily</strong>, with 76.4% drinking 2 to 3 cups per day.
+          </p>
+          <p>
+            The Kenya Tea Industry Performance Report (2024) indicated that Kenya produced approximately <strong>585,533 metric tonnes</strong> of processed tea, making it the third-highest producer globally after China and India. 
+          </p>
+          <p>
+            The Tea Board of Kenya categorizes production into two main regional blocks:
+          </p>
+          <ul>
+            <li><strong>East of Rift Block (32%):</strong> Mt. Kenya region (Kiambu, Murang'a, Nyeri, Kirinyaga, Meru, Tharaka Nithi), Nyambeni Hills, and the Aberdare Ranges.</li>
+            <li><strong>West of Rift Block (68%):</strong> Nandi, Trans Nzoia, Elgeyo Marakwet, Kakamega, Vihiga, Kericho, Bomet, Kisii, Nyamira, and Nakuru.</li>
+          </ul>
+          <p>
+            Optimal growing conditions require Kenya's high potential highlands (1,500m–2,700m above sea level) with annual rainfall between 1,200mm–1,500mm. Tea plants (<em>Camellia sinensis</em>) remain in nurseries for 9–12 months before transplanting, taking two years until the first harvest, and can remain productive for 50 to 80 years.
+          </p>
+          <p>
+            <strong>Climate Change Threat:</strong> Studies by Eco-Business project that optimal conditions for tea in Kenya could decline by 26.2% by 2050 due to rising temperatures and extreme weather events, presenting a major challenge for the agricultural sector.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Economics Section -->
+    <section id="economics" class="content-section">
+      <div class="news-card">
+        <div class="card-header">
+          <img src="ECONOMICS.jpg" alt="Economics Article Image" class="card-img">
+          <span class="article-tag">ECONOMICS</span>
+          <h2 class="bold-title">ECONOMIC DEVELOPMENTS & MARKETS</h2>
+          <p class="summary-statement">
+            Paste your summary here. Analysis on economic policies, trends, and market performance.
+          </p>
+          <button class="read-btn" onclick="toggleArticle('economics-article-1')">Read Full Article</button>
+        </div>
+        <div id="economics-article-1" class="full-article" style="display: none;">
+          <p>Paste the full text of your economics article here...</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Religious Section -->
+    <section id="religious" class="content-section">
+      <div class="news-card">
+        <div class="card-header">
+          <img src="RELIGIOUS.jpg" alt="Religious Article Image" class="card-img">
+          <span class="article-tag">RELIGIOUS</span>
+          <h2 class="bold-title">FAITH & COMMUNITY PERSPECTIVES</h2>
+          <p class="summary-statement">
+            Paste your summary here. Articles and essays on religious heritage, faith traditions, and values.
+          </p>
+          <button class="read-btn" onclick="toggleArticle('religious-article-1')">Read Full Article</button>
+        </div>
+        <div id="religious-article-1" class="full-article" style="display: none;">
+          <p>Paste the full text of your religious article here...</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Opinion Section -->
+    <section id="opinion" class="content-section">
+      <div class="news-card">
+        <div class="card-header">
+          <img src="OPINION.jpg" alt="Opinion Article Image" class="card-img">
+          <span class="article-tag">OPINION</span>
+          <h2 class="bold-title">PERSPECTIVES & EDITORIALS</h2>
+          <p class="summary-statement">
+            Paste your summary here. Commentary, critical thoughts, and opinion pieces on contemporary issues.
+          </p>
+          <button class="read-btn" onclick="toggleArticle('opinion-article-1')">Read Full Article</button>
+        </div>
+        <div id="opinion-article-1" class="full-article" style="display: none;">
+          <p>Paste the full text of your opinion article here...</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- History Section -->
+    <section id="history" class="content-section">
+      <div class="news-card">
+        <div class="card-header">
+          <img src="HISTORY.jpg" alt="History Article Image" class="card-img">
+          <span class="article-tag">HISTORY</span>
+          <h2 class="bold-title">HISTORICAL DOCUMENTATION</h2>
+          <p class="summary-statement">
+            Paste your summary here. In-depth explorations of key historical events, figures, and research.
+          </p>
+          <button class="read-btn" onclick="toggleArticle('history-article-1')">Read Full Article</button>
+        </div>
+        <div id="history-article-1" class="full-article" style="display: none;">
+          <p>Paste the full text of your history article here...</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Sports Section -->
+    <section id="sports" class="content-section">
+      <div class="news-card">
+        <div class="card-header">
+          <img src="SPORTS.jpg" alt="Sports Article Image" class="card-img">
+          <span class="article-tag">SPORTS</span>
+          <h2 class="bold-title">SPORTS COVERAGE & REVIEWS</h2>
+          <p class="summary-statement">
+            Paste your summary here. Local and global match reviews, player profiles, and tournament updates.
+          </p>
+          <button class="read-btn" onclick="toggleArticle('sports-article-1')">Read Full Article</button>
+        </div>
+        <div id="sports-article-1" class="full-article" style="display: none;">
+          <p>Paste the full text of your sports article here...</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Health Section -->
+    <section id="health" class="content-section">
+      <div class="news-card">
+        <div class="card-header">
+          <img src="HEALTH.jpg" alt="Health Article Image" class="card-img">
+          <span class="article-tag">HEALTH</span>
+          <h2 class="bold-title">HEALTH & WELLNESS RESEARCH</h2>
+          <p class="summary-statement">
+            Paste your summary here. Findings on medical care, public health initiatives, and health research.
+          </p>
+          <button class="read-btn" onclick="toggleArticle('health-article-1')">Read Full Article</button>
+        </div>
+        <div id="health-article-1" class="full-article" style="display: none;">
+          <p>Paste the full text of your health article here...</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Graphic Design Section -->
+    <section id="graphic-design" class="content-section">
+      <h1 class="section-title">Graphic Design</h1>
+      <p style="margin-bottom: 20px; color: #d1d5db;">Click on any design to enlarge it.</p>
+      <div class="cards-grid">
+        <div class="card">
+          <img src="Grap2.png" alt="Graphic Design Work" class="design-img" onclick="openImageModal(this.src)">
+        </div>
+        <div class="card">
+          <img src="madrid derby.jpg" alt="Madrid Derby Graphic" class="design-img" onclick="openImageModal(this.src)">
+        </div>
+        <div class="card">
+          <img src="wednesday.png" alt="Wednesday Graphic" class="design-img" onclick="openImageModal(this.src)">
+        </div>
+        <div class="card">
+          <img src="PECKY.png" alt="Pecky Graphic" class="design-img" onclick="openImageModal(this.src)">
+        </div>
+      </div>
+    </section>
+
+    <!-- Motion Graphics Page (Repaired Both Videos) -->
     <section id="motion-graphics" class="content-section">
       <h1 class="section-title">Motion Graphics</h1>
       <p style="margin-bottom: 20px; color: #d1d5db;">2D/3D animations and visual effects.</p>
       <div class="cards-grid">
         <!-- Local MP4 Video -->
         <div class="card">
-          <video width="100%" controls style="border-radius: 8px; max-height: 400px; background: #000;">
+          <video style="width: 100%; height: auto; max-height: 450px; border-radius: 8px; background: #000000;" controls>
             <source src="0001-0900.mp4" type="video/mp4">
             Your browser does not support the video tag.
           </video>
         </div>
 
-        <!-- Google Drive Embedded Video -->
+        <!-- Google Drive Embedded Video (Full Frame Fix) -->
         <div class="card">
-          <div class="video-responsive-container">
-            <iframe src="https://drive.google.com/file/d/1LXHtnc8021E17hFvi1Azy3cWujILt8Gn/preview" allow="autoplay" allowfullscreen></iframe>
+          <div style="position: relative; width: 100%; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 8px; background: #000000;">
+            <iframe 
+              src="https://drive.google.com/file/d/1LXHtnc8021E17hFvi1Azy3cWujILt8Gn/preview" 
+              style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none;" 
+              allow="autoplay; fullscreen" 
+              allowfullscreen>
+            </iframe>
           </div>
         </div>
       </div>
     </section>
+
+    <!-- Video Edits Page -->
+    <section id="video-edits" class="content-section">
+      <h1 class="section-title">Video Edits</h1>
+      <p style="margin-bottom: 20px; color: #d1d5db;">Professional video production and color grading.</p>
+      <div class="cards-grid">
+        <div class="card">
+          <p>Add your video projects or YouTube links here.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Script Written Page -->
+    <section id="script-written" class="content-section">
+      <h1 class="section-title">Script Written</h1>
+      <p style="margin-bottom: 20px; color: #d1d5db;">Engaging storytelling for commercials and films.</p>
+      <div class="cards-grid">
+        <div class="card">
+          <p>Add your written scripts or article text here.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Image Lightbox Modal Overlay -->
+  <div id="imageModal" class="modal" onclick="closeImageModal()">
+    <span class="close-modal">&times;</span>
+    <img class="modal-content" id="expandedImg">
+  </div>
+
+  <!-- Footer (Black) -->
+  <footer>
+    <p>This website is designed by a student journalist from research activities, articles, and creative work. A learner, educator, mentor, and counsellor.</p>
+    <p style="margin: 8px 0;"><strong>NICKSON NGIGI</strong></p>
+    <p>Editor, Student, Journalist.</p>
+    <p class="footer-terms">ALL RIGHTS RESERVED | TERMS & CONDITIONS APPLY</p>
+    <p style="margin-top: 10px;">&copy; 2026 Nickson. All rights reserved.</p>
+  </footer>
+
+  <script>
+    function toggleMenu() {
+      const navLinks = document.getElementById('navLinks');
+      if (navLinks) {
+        navLinks.classList.toggle('active-menu');
+      }
+    }
+
+    function showPage(pageId) {
+      // Hide all sections
+      const sections = document.querySelectorAll('.content-section');
+      sections.forEach(section => section.classList.remove('active'));
+
+      // Close mobile menu when a page link is selected
+      const navLinks = document.getElementById('navLinks');
+      if (navLinks) {
+        navLinks.classList.remove('active-menu');
+      }
+
+      // Check if the target section exists
+      const targetSection = document.getElementById(pageId);
+      if (targetSection) {
+        targetSection.classList.add('active');
+      }
+    }
+
+    // Toggle Read More / Full Article Content
+    function toggleArticle(articleId) {
+      const article = document.getElementById(articleId);
+      const btn = event.currentTarget;
+      if (article.style.display === "none" || article.style.display === "") {
+        article.style.display = "block";
+        btn.innerText = "Hide Article";
+      } else {
+        article.style.display = "none";
+        btn.innerText = "Read Full Article";
+      }
+    }
+
+    // Image Modal Lightbox Functions
+    function openImageModal(imgSrc) {
+      const modal = document.getElementById("imageModal");
+      const expandedImg = document.getElementById("expandedImg");
+      modal.style.display = "block";
+      expandedImg.src = imgSrc;
+    }
+
+    function closeImageModal() {
+      document.getElementById("imageModal").style.display = "none";
+    }
+  </script>
+</body>
+</html> 
