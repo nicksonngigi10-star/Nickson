@@ -14,7 +14,7 @@
     }
 
     body {
-      background-color: #0b132b; /* Dark Blue background */
+      background-color: #0b132b;
       color: #ffffff;
       min-height: 100vh;
       display: flex;
@@ -23,7 +23,7 @@
 
     /* Top Navigation (Red Background) */
     header {
-      background-color: #e50914; /* Red Header */
+      background-color: #e50914;
       box-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
       position: sticky;
       top: 0;
@@ -135,7 +135,7 @@
     /* Main Content Area */
     main {
       flex: 1;
-      max-width: 1000px;
+      max-width: 1050px;
       margin: 0 auto;
       padding: 40px 20px;
       width: 100%;
@@ -168,11 +168,18 @@
       display: inline-block;
     }
 
-    /* Grid Layout for Homepage & Portfolio Items */
+    /* Scalable Responsive Grids for 50+ Items */
     .cards-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 30px;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 25px;
+      margin-top: 25px;
+    }
+
+    .articles-feed {
+      display: flex;
+      flex-direction: column;
+      gap: 45px;
       margin-top: 25px;
     }
 
@@ -183,28 +190,47 @@
       border: none;
     }
 
-    .card h3 {
-      font-size: 1.3rem;
-      margin-bottom: 8px;
-      color: #ffffff;
+    /* Universal Responsive Embed Containers */
+    .video-container {
+      position: relative;
+      width: 100%;
+      padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+      height: 0;
+      overflow: hidden;
+      border-radius: 8px;
+      background: #000000;
     }
 
-    .card p {
-      color: #d1d5db;
-      line-height: 1.5;
+    .video-container iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+
+    .local-video {
+      width: 100%;
+      height: auto;
+      max-height: 450px;
+      border-radius: 8px;
+      background: #000000;
+      display: block;
     }
 
     .design-img {
       width: 100%;
-      max-height: 250px;
+      height: 260px;
       object-fit: cover;
       border-radius: 8px;
       cursor: pointer;
-      transition: transform 0.3s ease;
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
     }
 
     .design-img:hover {
-      transform: scale(1.02);
+      transform: translateY(-4px);
+      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.5);
     }
 
     /* Lightbox Modal */
@@ -217,7 +243,7 @@
       top: 0;
       width: 100%;
       height: 100%;
-      background-color: rgba(0, 0, 0, 0.9);
+      background-color: rgba(0, 0, 0, 0.92);
     }
 
     .modal-content {
@@ -407,7 +433,12 @@
       }
 
       .cards-grid {
-        grid-template-columns: 1fr;
+        grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+        gap: 15px;
+      }
+
+      .design-img {
+        height: 180px;
       }
 
       main {
@@ -438,7 +469,6 @@
         <li><a href="#" onclick="showPage('sports')">Sports</a></li>
         <li><a href="#" onclick="showPage('health')">Health</a></li>
         
-        <!-- Dropdown Menu for My Design -->
         <li class="dropdown">
           <a href="#">My Design &#9662;</a>
           <ul class="dropdown-menu">
@@ -463,252 +493,83 @@
 
       <div class="cards-grid">
         <div class="card">
-          <h3>Latest Articles</h3>
-          <p>Explore original reporting across Politics, Agriculture, Health, and Economics.</p>
+          <h3 style="margin-bottom: 8px;">Latest Articles</h3>
+          <p style="color: #d1d5db;">Explore original reporting across Politics, Agriculture, Health, and Economics.</p>
         </div>
         <div class="card">
-          <h3>Creative Portfolio</h3>
-          <p>View Graphic Design, Motion Graphics, and Video Production work under My Design.</p>
+          <h3 style="margin-bottom: 8px;">Creative Portfolio</h3>
+          <p style="color: #d1d5db;">View Graphic Design, Motion Graphics, and Video Production work under My Design.</p>
         </div>
       </div>
     </section>
 
-    <!-- Politics Section -->
+    <!-- Category Sections (Supporting 20+ Articles each) -->
     <section id="politics" class="content-section">
-      <div class="news-card">
-        <div class="card-header">
-          <img src="POLITICS.jpg" alt="Politics Article Image" class="card-img">
-          <span class="article-tag">POLITICS</span>
-          <h2 class="bold-title">POLITICAL ANALYSIS & INSIGHTS</h2>
-          <p class="summary-statement">
-            Paste your summary here. This section covers news, governance, public policy, and national affairs.
-          </p>
-          <button class="read-btn" onclick="toggleArticle('politics-article-1')">Read Full Article</button>
-        </div>
-        <div id="politics-article-1" class="full-article" style="display: none;">
-          <p>Paste the full text of your politics article here...</p>
-        </div>
-      </div>
+      <h1 class="section-title">Politics</h1>
+      <div class="articles-feed" id="politics-feed"></div>
     </section>
 
-    <!-- Agriculture Section -->
     <section id="agriculture" class="content-section">
-      <div class="news-card">
-        <div class="card-header">
-          <img src="TEA.jpg" alt="Tea Farming" class="card-img">
-          <span class="article-tag">AGRICULTURE & ENVIRONMENT</span>
-          <h2 class="bold-title">THE VALUE OF KENYA TEA</h2>
-          <p class="summary-statement">
-            Tea is an evergreen shrub that drives Kenya's agricultural economy, with over 585,000 metric tonnes produced annually. Click below to read the complete research article.
-          </p>
-          <button class="read-btn" onclick="toggleArticle('tea-article-1')">Read Full Article</button>
-        </div>
-
-        <div id="tea-article-1" class="full-article" style="display: none;">
-          <p>
-            <strong>Tea</strong> is an evergreen shrub or small tree cultivated and processed to make dried leaves for drinking, as well as for medicinal and herbal purposes.
-          </p>
-          <p>
-            According to Chinese legend, tea was used as early as 2700 BCE as herbal medicine. By the 3rd century, it became a daily beverage where processing and cultivation flourished. By 350 BCE, the first records of planting, processing, and drinking were documented. Tea cultivation continued to spread worldwide, arriving in Kenya in the late 19th and early 20th centuries.
-          </p>
-          <p>
-            Researchers Joizy Pius Engunjobi and Stephen Asatsa highlighted that <strong>95.3% of Kenyans consume tea daily</strong>, with 76.4% drinking 2 to 3 cups per day.
-          </p>
-          <p>
-            The Kenya Tea Industry Performance Report (2024) indicated that Kenya produced approximately <strong>585,533 metric tonnes</strong> of processed tea, making it the third-highest producer globally after China and India. 
-          </p>
-          <p>
-            The Tea Board of Kenya categorizes production into two main regional blocks:
-          </p>
-          <ul>
-            <li><strong>East of Rift Block (32%):</strong> Mt. Kenya region (Kiambu, Murang'a, Nyeri, Kirinyaga, Meru, Tharaka Nithi), Nyambeni Hills, and the Aberdare Ranges.</li>
-            <li><strong>West of Rift Block (68%):</strong> Nandi, Trans Nzoia, Elgeyo Marakwet, Kakamega, Vihiga, Kericho, Bomet, Kisii, Nyamira, and Nakuru.</li>
-          </ul>
-          <p>
-            Optimal growing conditions require Kenya's high potential highlands (1,500m–2,700m above sea level) with annual rainfall between 1,200mm–1,500mm. Tea plants (<em>Camellia sinensis</em>) remain in nurseries for 9–12 months before transplanting, taking two years until the first harvest, and can remain productive for 50 to 80 years.
-          </p>
-          <p>
-            <strong>Climate Change Threat:</strong> Studies by Eco-Business project that optimal conditions for tea in Kenya could decline by 26.2% by 2050 due to rising temperatures and extreme weather events, presenting a major challenge for the agricultural sector.
-          </p>
-        </div>
-      </div>
+      <h1 class="section-title">Agriculture</h1>
+      <div class="articles-feed" id="agriculture-feed"></div>
     </section>
 
-    <!-- Economics Section -->
     <section id="economics" class="content-section">
-      <div class="news-card">
-        <div class="card-header">
-          <img src="ECONOMICS.jpg" alt="Economics Article Image" class="card-img">
-          <span class="article-tag">ECONOMICS</span>
-          <h2 class="bold-title">ECONOMIC DEVELOPMENTS & MARKETS</h2>
-          <p class="summary-statement">
-            Paste your summary here. Analysis on economic policies, trends, and market performance.
-          </p>
-          <button class="read-btn" onclick="toggleArticle('economics-article-1')">Read Full Article</button>
-        </div>
-        <div id="economics-article-1" class="full-article" style="display: none;">
-          <p>Paste the full text of your economics article here...</p>
-        </div>
-      </div>
+      <h1 class="section-title">Economics</h1>
+      <div class="articles-feed" id="economics-feed"></div>
     </section>
 
-    <!-- Religious Section -->
     <section id="religious" class="content-section">
-      <div class="news-card">
-        <div class="card-header">
-          <img src="RELIGIOUS.jpg" alt="Religious Article Image" class="card-img">
-          <span class="article-tag">RELIGIOUS</span>
-          <h2 class="bold-title">FAITH & COMMUNITY PERSPECTIVES</h2>
-          <p class="summary-statement">
-            Paste your summary here. Articles and essays on religious heritage, faith traditions, and values.
-          </p>
-          <button class="read-btn" onclick="toggleArticle('religious-article-1')">Read Full Article</button>
-        </div>
-        <div id="religious-article-1" class="full-article" style="display: none;">
-          <p>Paste the full text of your religious article here...</p>
-        </div>
-      </div>
+      <h1 class="section-title">Religious</h1>
+      <div class="articles-feed" id="religious-feed"></div>
     </section>
 
-    <!-- Opinion Section -->
     <section id="opinion" class="content-section">
-      <div class="news-card">
-        <div class="card-header">
-          <img src="OPINION.jpg" alt="Opinion Article Image" class="card-img">
-          <span class="article-tag">OPINION</span>
-          <h2 class="bold-title">PERSPECTIVES & EDITORIALS</h2>
-          <p class="summary-statement">
-            Paste your summary here. Commentary, critical thoughts, and opinion pieces on contemporary issues.
-          </p>
-          <button class="read-btn" onclick="toggleArticle('opinion-article-1')">Read Full Article</button>
-        </div>
-        <div id="opinion-article-1" class="full-article" style="display: none;">
-          <p>Paste the full text of your opinion article here...</p>
-        </div>
-      </div>
+      <h1 class="section-title">Opinion</h1>
+      <div class="articles-feed" id="opinion-feed"></div>
     </section>
 
-    <!-- History Section -->
     <section id="history" class="content-section">
-      <div class="news-card">
-        <div class="card-header">
-          <img src="HISTORY.jpg" alt="History Article Image" class="card-img">
-          <span class="article-tag">HISTORY</span>
-          <h2 class="bold-title">HISTORICAL DOCUMENTATION</h2>
-          <p class="summary-statement">
-            Paste your summary here. In-depth explorations of key historical events, figures, and research.
-          </p>
-          <button class="read-btn" onclick="toggleArticle('history-article-1')">Read Full Article</button>
-        </div>
-        <div id="history-article-1" class="full-article" style="display: none;">
-          <p>Paste the full text of your history article here...</p>
-        </div>
-      </div>
+      <h1 class="section-title">History</h1>
+      <div class="articles-feed" id="history-feed"></div>
     </section>
 
-    <!-- Sports Section -->
     <section id="sports" class="content-section">
-      <div class="news-card">
-        <div class="card-header">
-          <img src="SPORTS.jpg" alt="Sports Article Image" class="card-img">
-          <span class="article-tag">SPORTS</span>
-          <h2 class="bold-title">SPORTS COVERAGE & REVIEWS</h2>
-          <p class="summary-statement">
-            Paste your summary here. Local and global match reviews, player profiles, and tournament updates.
-          </p>
-          <button class="read-btn" onclick="toggleArticle('sports-article-1')">Read Full Article</button>
-        </div>
-        <div id="sports-article-1" class="full-article" style="display: none;">
-          <p>Paste the full text of your sports article here...</p>
-        </div>
-      </div>
+      <h1 class="section-title">Sports</h1>
+      <div class="articles-feed" id="sports-feed"></div>
     </section>
 
-    <!-- Health Section -->
     <section id="health" class="content-section">
-      <div class="news-card">
-        <div class="card-header">
-          <img src="HEALTH.jpg" alt="Health Article Image" class="card-img">
-          <span class="article-tag">HEALTH</span>
-          <h2 class="bold-title">HEALTH & WELLNESS RESEARCH</h2>
-          <p class="summary-statement">
-            Paste your summary here. Findings on medical care, public health initiatives, and health research.
-          </p>
-          <button class="read-btn" onclick="toggleArticle('health-article-1')">Read Full Article</button>
-        </div>
-        <div id="health-article-1" class="full-article" style="display: none;">
-          <p>Paste the full text of your health article here...</p>
-        </div>
-      </div>
+      <h1 class="section-title">Health</h1>
+      <div class="articles-feed" id="health-feed"></div>
     </section>
 
-    <!-- Graphic Design Section -->
+    <!-- Graphic Design (Supporting 50+ Images) -->
     <section id="graphic-design" class="content-section">
       <h1 class="section-title">Graphic Design</h1>
       <p style="margin-bottom: 20px; color: #d1d5db;">Click on any design to enlarge it.</p>
-      <div class="cards-grid">
-        <div class="card">
-          <img src="Grap2.png" alt="Graphic Design Work" class="design-img" onclick="openImageModal(this.src)">
-        </div>
-        <div class="card">
-          <img src="madrid derby.jpg" alt="Madrid Derby Graphic" class="design-img" onclick="openImageModal(this.src)">
-        </div>
-        <div class="card">
-          <img src="wednesday.png" alt="Wednesday Graphic" class="design-img" onclick="openImageModal(this.src)">
-        </div>
-        <div class="card">
-          <img src="PECKY.png" alt="Pecky Graphic" class="design-img" onclick="openImageModal(this.src)">
-        </div>
-      </div>
+      <div class="cards-grid" id="graphic-grid"></div>
     </section>
 
-    <!-- Motion Graphics Page (Repaired Both Videos) -->
+    <!-- Motion Graphics (Supporting 30+ Videos) -->
     <section id="motion-graphics" class="content-section">
       <h1 class="section-title">Motion Graphics</h1>
       <p style="margin-bottom: 20px; color: #d1d5db;">2D/3D animations and visual effects.</p>
-      <div class="cards-grid">
-        <!-- Local MP4 Video -->
-        <div class="card">
-          <video style="width: 100%; height: auto; max-height: 450px; border-radius: 8px; background: #000000;" controls>
-            <source src="0001-0900.mp4" type="video/mp4">
-            Your browser does not support the video tag.
-          </video>
-        </div>
-
-        <!-- Google Drive Embedded Video (Full Frame Fix) -->
-        <div class="card">
-          <div style="position: relative; width: 100%; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 8px; background: #000000;">
-            <iframe 
-              src="https://drive.google.com/file/d/1LXHtnc8021E17hFvi1Azy3cWujILt8Gn/preview" 
-              style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none;" 
-              allow="autoplay; fullscreen" 
-              allowfullscreen>
-            </iframe>
-          </div>
-        </div>
-      </div>
+      <div class="cards-grid" id="motion-grid"></div>
     </section>
 
-    <!-- Video Edits Page -->
+    <!-- Video Edits (Supporting 30+ Videos) -->
     <section id="video-edits" class="content-section">
       <h1 class="section-title">Video Edits</h1>
       <p style="margin-bottom: 20px; color: #d1d5db;">Professional video production and color grading.</p>
-      <div class="cards-grid">
-        <div class="card">
-          <p>Add your video projects or YouTube links here.</p>
-        </div>
-      </div>
+      <div class="cards-grid" id="video-edits-grid"></div>
     </section>
 
     <!-- Script Written Page -->
     <section id="script-written" class="content-section">
       <h1 class="section-title">Script Written</h1>
       <p style="margin-bottom: 20px; color: #d1d5db;">Engaging storytelling for commercials and films.</p>
-      <div class="cards-grid">
-        <div class="card">
-          <p>Add your written scripts or article text here.</p>
-        </div>
-      </div>
+      <div class="articles-feed" id="script-feed"></div>
     </section>
   </main>
 
@@ -728,55 +589,141 @@
   </footer>
 
   <script>
+    // Navigation Functions
     function toggleMenu() {
       const navLinks = document.getElementById('navLinks');
-      if (navLinks) {
-        navLinks.classList.toggle('active-menu');
-      }
+      if (navLinks) navLinks.classList.toggle('active-menu');
     }
 
     function showPage(pageId) {
-      // Hide all sections
-      const sections = document.querySelectorAll('.content-section');
-      sections.forEach(section => section.classList.remove('active'));
-
-      // Close mobile menu when a page link is selected
+      document.querySelectorAll('.content-section').forEach(s => s.classList.remove('active'));
       const navLinks = document.getElementById('navLinks');
-      if (navLinks) {
-        navLinks.classList.remove('active-menu');
-      }
+      if (navLinks) navLinks.classList.remove('active-menu');
+      const target = document.getElementById(pageId);
+      if (target) target.classList.add('active');
+    }
 
-      // Check if the target section exists
-      const targetSection = document.getElementById(pageId);
-      if (targetSection) {
-        targetSection.classList.add('active');
+    function toggleArticle(articleId, btn) {
+      const art = document.getElementById(articleId);
+      if (art) {
+        if (art.style.display === "none" || art.style.display === "") {
+          art.style.display = "block";
+          btn.innerText = "Hide Article";
+        } else {
+          art.style.display = "none";
+          btn.innerText = "Read Full Article";
+        }
       }
     }
 
-    // Toggle Read More / Full Article Content
-    function toggleArticle(articleId) {
-      const article = document.getElementById(articleId);
-      const btn = event.currentTarget;
-      if (article.style.display === "none" || article.style.display === "") {
-        article.style.display = "block";
-        btn.innerText = "Hide Article";
-      } else {
-        article.style.display = "none";
-        btn.innerText = "Read Full Article";
-      }
-    }
-
-    // Image Modal Lightbox Functions
-    function openImageModal(imgSrc) {
-      const modal = document.getElementById("imageModal");
-      const expandedImg = document.getElementById("expandedImg");
-      modal.style.display = "block";
-      expandedImg.src = imgSrc;
+    function openImageModal(src) {
+      document.getElementById("imageModal").style.display = "block";
+      document.getElementById("expandedImg").src = src;
     }
 
     function closeImageModal() {
       document.getElementById("imageModal").style.display = "none";
     }
+
+    /* ==========================================================================
+       DATA LISTS (EASILY ADD 50+ GRAPHICS, 30+ VIDEOS, AND 20+ ARTICLES HERE)
+       ========================================================================== */
+
+    // 1. Graphic Design Images (Paste up to 50+ image filenames here)
+    const graphicImages = [
+      "Grap2.png",
+      "madrid derby.jpg",
+      "wednesday.png",
+      "PECKY.png"
+      // Add more: "graphic5.jpg", "graphic6.jpg", ...
+    ];
+
+    // 2. Motion Graphics Videos (Local MP4s or Google Drive embed URLs)
+    const motionVideos = [
+      { type: "local", src: "0001-0900.mp4" },
+      { type: "embed", src: "https://drive.google.com/file/d/1LXHtnc8021E17hFvi1Azy3cWujILt8Gn/preview" }
+      // Add more items here...
+    ];
+
+    // 3. Agriculture Articles Array Example
+    const agricultureArticles = [
+      {
+        id: "tea-article-1",
+        tag: "AGRICULTURE & ENVIRONMENT",
+        title: "THE VALUE OF KENYA TEA",
+        image: "TEA.jpg",
+        summary: "Tea is an evergreen shrub that drives Kenya's agricultural economy, with over 585,000 metric tonnes produced annually.",
+        fullContent: `
+          <p><strong>Tea</strong> is an evergreen shrub or small tree cultivated and processed to make dried leaves for drinking, as well as for medicinal and herbal purposes.</p>
+          <p>According to Chinese legend, tea was used as early as 2700 BCE as herbal medicine. By the 3rd century, it became a daily beverage where processing and cultivation flourished. By 350 BCE, the first records of planting, processing, and drinking were documented. Tea cultivation continued to spread worldwide, arriving in Kenya in the late 19th and early 20th centuries.</p>
+          <p>Researchers Joizy Pius Engunjobi and Stephen Asatsa highlighted that <strong>95.3% of Kenyans consume tea daily</strong>, with 76.4% drinking 2 to 3 cups per day.</p>
+          <p>The Kenya Tea Industry Performance Report (2024) indicated that Kenya produced approximately <strong>585,533 metric tonnes</strong> of processed tea, making it the third-highest producer globally after China and India.</p>
+          <p>The Tea Board of Kenya categorizes production into two main regional blocks:</p>
+          <ul>
+            <li><strong>East of Rift Block (32%):</strong> Mt. Kenya region (Kiambu, Murang'a, Nyeri, Kirinyaga, Meru, Tharaka Nithi), Nyambeni Hills, and the Aberdare Ranges.</li>
+            <li><strong>West of Rift Block (68%):</strong> Nandi, Trans Nzoia, Elgeyo Marakwet, Kakamega, Vihiga, Kericho, Bomet, Kisii, Nyamira, and Nakuru.</li>
+          </ul>
+          <p>Optimal growing conditions require Kenya's high potential highlands (1,500m–2,700m above sea level) with annual rainfall between 1,200mm–1,500mm.</p>
+          <p><strong>Climate Change Threat:</strong> Studies by Eco-Business project that optimal conditions for tea in Kenya could decline by 26.2% by 2050 due to rising temperatures and extreme weather events.</p>
+        `
+      }
+      // Add article 2, 3, 4, ... up to 20+ here
+    ];
+
+    // AUTOMATIC PAGE RENDERERS
+    window.addEventListener('DOMContentLoaded', () => {
+      // Render Graphic Design Gallery
+      const graphicGrid = document.getElementById('graphic-grid');
+      if (graphicGrid) {
+        graphicGrid.innerHTML = graphicImages.map(img => `
+          <div class="card">
+            <img src="${img}" alt="Graphic Design Work" class="design-img" onclick="openImageModal(this.src)">
+          </div>
+        `).join('');
+      }
+
+      // Render Motion Graphics Videos
+      const motionGrid = document.getElementById('motion-grid');
+      if (motionGrid) {
+        motionGrid.innerHTML = motionVideos.map(v => {
+          if (v.type === "local") {
+            return `
+              <div class="card">
+                <video class="local-video" controls>
+                  <source src="${v.src}" type="video/mp4">
+                  Your browser does not support the video tag.
+                </video>
+              </div>`;
+          } else {
+            return `
+              <div class="card">
+                <div class="video-container">
+                  <iframe src="${v.src}" allow="autoplay; fullscreen" allowfullscreen></iframe>
+                </div>
+              </div>`;
+          }
+        }).join('');
+      }
+
+      // Render Agriculture Articles Feed
+      const agFeed = document.getElementById('agriculture-feed');
+      if (agFeed) {
+        agFeed.innerHTML = agricultureArticles.map(a => `
+          <div class="news-card">
+            <div class="card-header">
+              <img src="${a.image}" alt="${a.title}" class="card-img">
+              <span class="article-tag">${a.tag}</span>
+              <h2 class="bold-title">${a.title}</h2>
+              <p class="summary-statement">${a.summary}</p>
+              <button class="read-btn" onclick="toggleArticle('${a.id}', this)">Read Full Article</button>
+            </div>
+            <div id="${a.id}" class="full-article" style="display: none;">
+              ${a.fullContent}
+            </div>
+          </div>
+        `).join('');
+      }
+    });
   </script>
 </body>
 </html> 
