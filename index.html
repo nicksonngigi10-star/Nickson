@@ -488,6 +488,13 @@
     <section id="home" class="content-section active">
       <div class="full-width-hero">
         <img src="MY COVER.png" alt="Journalism Cover" class="hero-img-full">
+        <!-- Article Link Card on Home Page -->
+<div class="card">
+  <h3 style="margin-bottom: 8px;">Opinion Featured Article</h3>
+  <p style="color: #d1d5db; margin-bottom: 12px;">Short summary preview of the article to capture readers' attention...</p>
+  
+  <a href="#opinion-article-1" class="read-more-btn" onclick="openOpinionArticle()">Read Article &rarr;</a>
+</div>
       </div>
       <h1 class="hero-title">JOURNALISM</h1>
 
@@ -526,7 +533,29 @@
 
     <section id="opinion" class="content-section">
       <h1 class="section-title">Opinion</h1>
-      <div class="articles-feed" id="opinion-feed"></div>
+      <div class="articles-feed<!-- New Opinion Article -->
+<article class="article-card" id="opinion-article-1">
+  <img src="PHOTONEWS.jpg" alt="Article Image" class="article-image" style="width: 100%; height: auto; border-radius: 8px; margin-bottom: 12px;">
+  <h2 class="Media Journalism and the Press">Your Opinion Article Title Here</h2>
+  <p class="article-meta" style="color: #9ca3af; font-size: 0.875rem; margin-bottom: 8px;">Published on October 6, 2026</p>
+  <div class="article-body">
+    <p>MEDIA JOURNALISM AND THE PRESS</p>
+<p>A journalistic field is a space of a culture production that is created and constrained(Pierre Bourdieu’s Field Theory) This definition comes to two key word created and constrained created means the media or journalistic field has its own unique norms, ethics and professional identity meant to protect independent reporting but on the other hand it constrained that is it can never be free because it relies heavily on external money and authority to survive the same field they spend time criticising.
+<p>Journalism was there maybe even when the word was being created since the information written in our history books and religious books about our origin were written and documented by journalists but at the time it was not  a statement that existed.</p>
+Lets focus on the time the media become informative and defined as the media it all started in Rome for newspaper which was hand written before invention of the movable by Johannes Gutenberg(1440), Industrialization come and introduced Penny press which was a form of selling this newspaper and become a form of information entertainment and educative. While radio started by trials from Guglielmo Marconi late 1890s who tried to use radio through cable but later Reginald Fessenden's first voice in 1906 on Christmas it then became a military to maritime  and then it was a public media.
+The first radio according The broadcast century and beyond by Robert L.Hilliard and Michael C . Keith KDKA Pittsburgh Pennsylvania USA was the first licensed commercial radio on air in November 2nd 1920, thereafter it was evolved until the modern radio e.g. podcasts. While on TV it took the same process from ancient time to modern where the invention of mechanical wave  and all electro system before invention of Fernsehsender in berlin germany which became a regular tv by march 22nd 1935 afterward BBC in britain was introduced in 1936. 
+All this media are platforms that journalists use to condemn, educate and entertain among other things.</p>
+<p>But how is this media, who is it, what is its role in the society, what is it’s strength and weaknesses.</p>
+<p>Journalism and media is one of the most influential more especially when it come to politics and it doesn't tell you where or how to do something but they make you do what you want because it does not just function as an external power but a potential distributor of power(as stated by Peter Golding and Graham Murdock) because i describe the journalism as the power of psychology. Graham Spence said that media and journalism does not play news to inform but to keep us watching. Journalism and media is an open field that has a lot of internal concepts that require a lot of digging because we go condemn the government a business then we want them to come to the media to do advertisements for financial balance to keep the meia going even the government based media they condemn the sponsor of the media who is the government.
+But as the media we also have a responsibility to keep peace as Graham Spence wrote on The media and the peace where we have to be equal at all time,Paying more attention to inner dynamics and your weakness.
+</p>
+    <p>But this journalistic activity involvement with the media is creating a dilemma when it comes to the new media technologies e.g. the social media, mobile journalism which is seen as the successor of the media and journalism because they seem to be cheap and first.
+But what is the interest of this technology? They focus on the audience's preference for who they want. That is where they play with their agendas and they get the audience of both sides, those who condemn and those who are followers. But with all this the conflict between the parties is solved by the Media. The reason behind true and fair journalism. The new media technologies operate because the Media is still alive as it will always be .  It was there we found it and we will leave it there because a world without media is like a silence chamber even with new technologies they will be giving misinformation according to interest,money culture and other values and cores lets keep the media and maintain its dignity and freedom with its rights. </p>
+ 
+<p>Nickson Ngigi.</p>
+<p>Writer.</p>
+ </div>
+</article>" id="opinion-feed"></div>
     </section>
 
     <section id="history" class="content-section">
@@ -725,5 +754,18 @@
       }
     });
   </script>
+  <script>
+  function openOpinionArticle() {
+    // Hide all sections
+    const sections = document.querySelectorAll('.content-section');
+    sections.forEach(sec => sec.style.display = 'none');
+
+    // Show the opinion section
+    const opinionSection = document.getElementById('opinion');
+    if (opinionSection) {
+      opinionSection.style.display = 'block';
+    }
+  }
+</script>
 </body>
 </html> 
