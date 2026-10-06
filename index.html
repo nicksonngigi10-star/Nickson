@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -171,7 +171,7 @@
     /* Scalable Responsive Grids for 50+ Items */
     .cards-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
       gap: 25px;
       margin-top: 25px;
     }
@@ -184,10 +184,25 @@
     }
 
     .card {
-      background: transparent;
-      padding: 0;
-      border-radius: 0;
-      border: none;
+      background: #1c2541;
+      padding: 15px;
+      border-radius: 8px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      cursor: pointer;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4);
+    }
+
+    .home-card-img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+      border-radius: 6px;
+      margin-bottom: 12px;
     }
 
     /* Universal Responsive Embed Containers */
@@ -488,29 +503,30 @@
     <section id="home" class="content-section active">
       <div class="full-width-hero">
         <img src="MY COVER.png" alt="Journalism Cover" class="hero-img-full">
-        <!-- Article Link Card on Home Page -->
-<div class="card">
-  <h3 style="margin-bottom: 8px;">Opinion Featured Article</h3>
-  <p style="color: #d1d5db; margin-bottom: 12px;">Short summary preview of the article to capture readers' attention...</p>
-  
-  <a href="#opinion-article-1" class="read-more-btn" onclick="openOpinionArticle()">Read Article &rarr;</a>
-</div>
       </div>
+      
       <h1 class="hero-title">JOURNALISM</h1>
 
       <div class="cards-grid">
-        <div class="card">
-          <h3 style="margin-bottom: 8px;">Latest Articles</h3>
-          <p style="color: #d1d5db;">Explore original reporting across Politics, Agriculture, Health, and Economics.</p>
+        <!-- Opinion Featured Card on Home -->
+        <div class="card" onclick="openArticleDirectly('opinion', 'opinion-article-1')">
+          <img src="PHOTONEWS.jpg" alt="Opinion Article Image" class="home-card-img">
+          <span class="article-tag">OPINION</span>
+          <h2 style="font-size: 1.2rem; margin-bottom: 8px;">MEDIA JOURNALISM AND THE PRESS</h2>
+          <p style="color: #d1d5db; font-size: 0.9rem;">Click to read full opinion piece on journalistic fields, ethics, and external constraints...</p>
         </div>
-        <div class="card">
-          <h3 style="margin-bottom: 8px;">Creative Portfolio</h3>
-          <p style="color: #d1d5db;">View Graphic Design, Motion Graphics, and Video Production work under My Design.</p>
+
+        <!-- Agriculture Featured Card on Home -->
+        <div class="card" onclick="openArticleDirectly('agriculture', 'tea-article-1')">
+          <img src="TEA.jpg" alt="Agriculture Article Image" class="home-card-img">
+          <span class="article-tag">AGRICULTURE</span>
+          <h2 style="font-size: 1.2rem; margin-bottom: 8px;">THE VALUE OF KENYA TEA</h2>
+          <p style="color: #d1d5db; font-size: 0.9rem;">Click to read how tea drives Kenya's agricultural economy and global market...</p>
         </div>
       </div>
     </section>
 
-    <!-- Category Sections (Supporting 20+ Articles each) -->
+    <!-- Category Sections -->
     <section id="politics" class="content-section">
       <h1 class="section-title">Politics</h1>
       <div class="articles-feed" id="politics-feed"></div>
@@ -533,29 +549,29 @@
 
     <section id="opinion" class="content-section">
       <h1 class="section-title">Opinion</h1>
-      <div class="articles-feed<!-- New Opinion Article -->
-<article class="article-card" id="opinion-article-1">
-  <img src="PHOTONEWS.jpg" alt="Article Image" class="article-image" style="width: 100%; height: auto; border-radius: 8px; margin-bottom: 12px;">
-  <h2 class="Media Journalism and the Press">Your Opinion Article Title Here</h2>
-  <p class="article-meta" style="color: #9ca3af; font-size: 0.875rem; margin-bottom: 8px;">Published on October 6, 2026</p>
-  <div class="article-body">
-    <p>MEDIA JOURNALISM AND THE PRESS</p>
-<p>A journalistic field is a space of a culture production that is created and constrained(Pierre Bourdieu’s Field Theory) This definition comes to two key word created and constrained created means the media or journalistic field has its own unique norms, ethics and professional identity meant to protect independent reporting but on the other hand it constrained that is it can never be free because it relies heavily on external money and authority to survive the same field they spend time criticising.
-<p>Journalism was there maybe even when the word was being created since the information written in our history books and religious books about our origin were written and documented by journalists but at the time it was not  a statement that existed.</p>
-Lets focus on the time the media become informative and defined as the media it all started in Rome for newspaper which was hand written before invention of the movable by Johannes Gutenberg(1440), Industrialization come and introduced Penny press which was a form of selling this newspaper and become a form of information entertainment and educative. While radio started by trials from Guglielmo Marconi late 1890s who tried to use radio through cable but later Reginald Fessenden's first voice in 1906 on Christmas it then became a military to maritime  and then it was a public media.
-The first radio according The broadcast century and beyond by Robert L.Hilliard and Michael C . Keith KDKA Pittsburgh Pennsylvania USA was the first licensed commercial radio on air in November 2nd 1920, thereafter it was evolved until the modern radio e.g. podcasts. While on TV it took the same process from ancient time to modern where the invention of mechanical wave  and all electro system before invention of Fernsehsender in berlin germany which became a regular tv by march 22nd 1935 afterward BBC in britain was introduced in 1936. 
-All this media are platforms that journalists use to condemn, educate and entertain among other things.</p>
-<p>But how is this media, who is it, what is its role in the society, what is it’s strength and weaknesses.</p>
-<p>Journalism and media is one of the most influential more especially when it come to politics and it doesn't tell you where or how to do something but they make you do what you want because it does not just function as an external power but a potential distributor of power(as stated by Peter Golding and Graham Murdock) because i describe the journalism as the power of psychology. Graham Spence said that media and journalism does not play news to inform but to keep us watching. Journalism and media is an open field that has a lot of internal concepts that require a lot of digging because we go condemn the government a business then we want them to come to the media to do advertisements for financial balance to keep the meia going even the government based media they condemn the sponsor of the media who is the government.
-But as the media we also have a responsibility to keep peace as Graham Spence wrote on The media and the peace where we have to be equal at all time,Paying more attention to inner dynamics and your weakness.
-</p>
-    <p>But this journalistic activity involvement with the media is creating a dilemma when it comes to the new media technologies e.g. the social media, mobile journalism which is seen as the successor of the media and journalism because they seem to be cheap and first.
-But what is the interest of this technology? They focus on the audience's preference for who they want. That is where they play with their agendas and they get the audience of both sides, those who condemn and those who are followers. But with all this the conflict between the parties is solved by the Media. The reason behind true and fair journalism. The new media technologies operate because the Media is still alive as it will always be .  It was there we found it and we will leave it there because a world without media is like a silence chamber even with new technologies they will be giving misinformation according to interest,money culture and other values and cores lets keep the media and maintain its dignity and freedom with its rights. </p>
- 
-<p>Nickson Ngigi.</p>
-<p>Writer.</p>
- </div>
-</article>" id="opinion-feed"></div>
+      <div class="articles-feed" id="opinion-feed">
+        <!-- Opinion Article Structured -->
+        <div class="news-card">
+          <div class="card-header">
+            <img src="PHOTONEWS.jpg" alt="Media Journalism and the Press" class="card-img">
+            <span class="article-tag">OPINION & PRESS</span>
+            <h2 class="bold-title">MEDIA JOURNALISM AND THE PRESS</h2>
+            <p class="summary-statement">A journalistic field is a space of culture production that is created and constrained by external powers, ethics, and independence.</p>
+            <button class="read-btn" onclick="toggleArticle('opinion-article-1', this)">Read Full Article</button>
+          </div>
+          <div id="opinion-article-1" class="full-article" style="display: none;">
+            <p>A journalistic field is a space of a culture production that is created and constrained (Pierre Bourdieu’s Field Theory). This definition comes to two key words: created and constrained. Created means the media or journalistic field has its own unique norms, ethics and professional identity meant to protect independent reporting, but on the other hand it is constrained—that is, it can never be completely free because it relies heavily on external money and authority to survive the same field they spend time criticising.</p>
+            <p>Journalism was there maybe even when the word was being created since the information written in our history books and religious books about our origin were written and documented by journalists, but at the time it was not a statement that existed.</p>
+            <p>Let's focus on the time the media became informative and defined as the media. It all started in Rome with hand-written newspapers before the invention of the movable type by Johannes Gutenberg (1440). Industrialization came and introduced the Penny Press, which was a form of selling newspapers that became a form of information, entertainment, and education. While radio started through trials by Guglielmo Marconi in the late 1890s using cables, Reginald Fessenden delivered the first voice broadcast in 1906 on Christmas. It then shifted from military to maritime use before becoming public media.</p>
+            <p>The first licensed commercial radio station on air was KDKA Pittsburgh, Pennsylvania, USA on November 2nd, 1920 (according to <em>The Broadcast Century and Beyond</em> by Robert L. Hilliard and Michael C. Keith). Thereafter, it evolved into modern radio (e.g., podcasts). TV took a similar route, evolving from mechanical waves and electronic systems until Fernsehsender in Berlin, Germany became a regular TV broadcast on March 22nd, 1935, followed by the BBC in Britain in 1936.</p>
+            <p>All these media are platforms that journalists use to condemn, educate, and entertain among other things. But how is this media structured, who is it, and what is its role in society? What are its strengths and weaknesses?</p>
+            <p>Journalism and media are among the most influential forces, especially regarding politics. They don't just function as external power, but as potential distributors of power (as stated by Peter Golding and Graham Murdock)—what can be described as the power of psychology. Media and journalism do not just report news to inform, but to keep us engaged. Journalism and media is an open field with internal conflicts; for instance, media platforms condemn governments or businesses and then rely on those same entities for advertising revenue to maintain financial balance.</p>
+            <p>However, media also has a responsibility to maintain peace (as Graham Spence wrote in <em>The Media and Peace</em>), remaining balanced at all times while paying close attention to inner dynamics and weaknesses.</p>
+            <p>This involvement creates a dilemma with new media technologies like social media and mobile journalism. They are seen as cheap and fast successors to traditional journalism. But what is their primary driver? They focus on audience preferences, playing into specific agendas to capture attention from both critics and supporters. Despite this shift, conflicts between parties are still navigated by core journalism values. New media technologies operate because traditional media remains essential. A world without media is like a silent chamber; without core journalistic integrity, new technologies invite misinformation based on money, interest, and bias. Let us keep the media and maintain its dignity, freedom, and rights.</p>
+            <p><strong>Writer:</strong> Nickson Ngigi</p>
+          </div>
+        </div>
+      </div>
     </section>
 
     <section id="history" class="content-section">
@@ -573,21 +589,21 @@ But what is the interest of this technology? They focus on the audience's prefer
       <div class="articles-feed" id="health-feed"></div>
     </section>
 
-    <!-- Graphic Design (Supporting 50+ Images) -->
+    <!-- Graphic Design -->
     <section id="graphic-design" class="content-section">
       <h1 class="section-title">Graphic Design</h1>
       <p style="margin-bottom: 20px; color: #d1d5db;">Click on any design to enlarge it.</p>
       <div class="cards-grid" id="graphic-grid"></div>
     </section>
 
-    <!-- Motion Graphics (Supporting 30+ Videos) -->
+    <!-- Motion Graphics -->
     <section id="motion-graphics" class="content-section">
       <h1 class="section-title">Motion Graphics</h1>
       <p style="margin-bottom: 20px; color: #d1d5db;">2D/3D animations and visual effects.</p>
       <div class="cards-grid" id="motion-grid"></div>
     </section>
 
-    <!-- Video Edits (Supporting 30+ Videos) -->
+    <!-- Video Edits -->
     <section id="video-edits" class="content-section">
       <h1 class="section-title">Video Edits</h1>
       <p style="margin-bottom: 20px; color: #d1d5db;">Professional video production and color grading.</p>
@@ -637,10 +653,25 @@ But what is the interest of this technology? They focus on the audience's prefer
       if (art) {
         if (art.style.display === "none" || art.style.display === "") {
           art.style.display = "block";
-          btn.innerText = "Hide Article";
+          if (btn) btn.innerText = "Hide Article";
         } else {
           art.style.display = "none";
-          btn.innerText = "Read Full Article";
+          if (btn) btn.innerText = "Read Full Article";
+        }
+      }
+    }
+
+    // Opens a section from Home page and expands the article body automatically
+    function openArticleDirectly(sectionId, articleId) {
+      showPage(sectionId);
+      const articleBody = document.getElementById(articleId);
+      if (articleBody) {
+        articleBody.style.display = "block";
+        const newsCard = articleBody.closest('.news-card');
+        if (newsCard) {
+          const btn = newsCard.querySelector('.read-btn');
+          if (btn) btn.innerText = "Hide Article";
+          newsCard.scrollIntoView({ behavior: 'smooth' });
         }
       }
     }
@@ -654,27 +685,20 @@ But what is the interest of this technology? They focus on the audience's prefer
       document.getElementById("imageModal").style.display = "none";
     }
 
-    /* ==========================================================================
-       DATA LISTS (EASILY ADD 50+ GRAPHICS, 30+ VIDEOS, AND 20+ ARTICLES HERE)
-       ========================================================================== */
+    /* DATA LISTS */
 
-    // 1. Graphic Design Images (Paste up to 50+ image filenames here)
     const graphicImages = [
       "Grap2.png",
       "madrid derby.jpg",
       "wednesday.png",
       "PECKY.png"
-      // Add more: "logo.png", "graphic6.jpg", ...
     ];
 
-    // 2. Motion Graphics Videos (Local MP4s or Google Drive embed URLs)
     const motionVideos = [
       { type: "local", src: "0001-0900.mp4" },
       { type: "embed", src: "https://drive.google.com/file/d/1LXHtnc8021E17hFvi1Azy3cWujILt8Gn/preview" }
-      // Add more items here...
     ];
 
-    // 3. Agriculture Articles Array Example
     const agricultureArticles = [
       {
         id: "tea-article-1",
@@ -696,10 +720,9 @@ But what is the interest of this technology? They focus on the audience's prefer
           <p><strong>Climate Change Threat:</strong> Studies by Eco-Business project that optimal conditions for tea in Kenya could decline by 26.2% by 2050 due to rising temperatures and extreme weather events.</p>
         `
       }
-      // Add article 2, 3, 4, ... up to 20+ here
     ];
 
-    // AUTOMATIC PAGE RENDERERS
+    // AUTOMATIC RENDERERS
     window.addEventListener('DOMContentLoaded', () => {
       // Render Graphic Design Gallery
       const graphicGrid = document.getElementById('graphic-grid');
@@ -754,18 +777,5 @@ But what is the interest of this technology? They focus on the audience's prefer
       }
     });
   </script>
-  <script>
-  function openOpinionArticle() {
-    // Hide all sections
-    const sections = document.querySelectorAll('.content-section');
-    sections.forEach(sec => sec.style.display = 'none');
-
-    // Show the opinion section
-    const opinionSection = document.getElementById('opinion');
-    if (opinionSection) {
-      opinionSection.style.display = 'block';
-    }
-  }
-</script>
 </body>
-</html> 
+</html>
